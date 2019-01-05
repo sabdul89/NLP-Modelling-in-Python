@@ -86,7 +86,7 @@ def build_model():
     pipeline=Pipeline([
                        ('vect',CountVectorizer(tokenizer=tokenize)),
                        ('tfidf',TfidfTransformer()),
-                       ('clf',MultiOutputClassifier(OneVsRestClassifier(LinearSVC()),n_jobs=-1))
+                       ('clf',MultiOutputClassifier(OneVsRestClassifier(LinearSVC())))
                       ])
     
     parameters = { 
@@ -120,7 +120,7 @@ def evaluate_model(model, X_test, Y_test, category_names):
     
     y_pred = model.predict(X_test)
     print(classification_report(Y_test, y_pred, target_names=category_names))
-    print ("Model final accuracy score is {}".format(accuracy_score(y_test,y_pred)))
+    print ("Model final accuracy score is {}".format(accuracy_score(Y_test,y_pred)))
     
     return
 
